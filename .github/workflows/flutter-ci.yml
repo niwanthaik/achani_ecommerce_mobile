@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -31,11 +31,23 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
 
+      # Android build only
       - name: Build APK (Android)
         if: matrix.os == 'ubuntu-latest'
         run: flutter build apk --debug
 
+      # iOS build only – macOS runners need a few extra steps
+      - name: Accept Xcode license
+        if: matrix.os == 'macos-latest'
+        run: sudo xcodebuild -license accept
+
+      - name: Install CocoaPods
+        if: matrix.os == 'macos-latest'
+        run: |
+          sudo gem install cocoapods
+          cd ios
+          pod install
+
       - name: Build iOS (macOS)
         if: matrix.os == 'macos-latest'
         run: flutter build ios --no-codesign --debug
-
