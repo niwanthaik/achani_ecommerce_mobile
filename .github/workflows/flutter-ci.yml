@@ -22,6 +22,11 @@ jobs:
         with:
           channel: stable
 
+      # macOS only: accept Xcode license
+      - name: Accept Xcode license
+        if: matrix.os == 'macos-latest'
+        run: sudo xcodebuild -license accept
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -31,16 +36,11 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
 
-      # Android build only
       - name: Build APK (Android)
         if: matrix.os == 'ubuntu-latest'
         run: flutter build apk --debug
 
-      # iOS build only – macOS runners need a few extra steps
-      - name: Accept Xcode license
-        if: matrix.os == 'macos-latest'
-        run: sudo xcodebuild -license accept
-
+      # macOS only: install CocoaPods
       - name: Install CocoaPods
         if: matrix.os == 'macos-latest'
         run: |
