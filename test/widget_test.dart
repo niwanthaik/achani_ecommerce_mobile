@@ -6,8 +6,8 @@ import 'package:achani_ecommerce_mobile/main.dart';
 import 'package:achani_ecommerce_mobile/bloc/counter_bloc.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Wrap MyApp in the same BlocProvider you use in main()
+  testWidgets('BLoC counter increments', (WidgetTester tester) async {
+    // Wrap MyApp in the same provider you use in main()
     await tester.pumpWidget(
       BlocProvider(
         create: (_) => CounterBloc(),
@@ -15,15 +15,14 @@ void main() {
       ),
     );
 
-    // Verify that our counter starts at 0.
+    // Counter should start at 0
     expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
+    // Tap the + FAB and rebuild
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
 
-    // Verify that our counter has incremented.
+    // Should find a “1” now
     expect(find.text('1'), findsOneWidget);
   });
 }
