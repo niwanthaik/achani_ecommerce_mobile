@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52862403129",
+    "project_id": "achani-ecommerce",
+    "storage_bucket": "achani-ecommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52862403129:android:93bd002e853afb74a183e8",
+        "android_client_info": {
+          "package_name": "com.example.achani_ecommerce_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdK2IP3KsR82arla3OUp7HvYTO-RQnnxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
